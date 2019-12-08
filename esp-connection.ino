@@ -57,16 +57,31 @@ void setup() {
 }
 void loop() {
   delay(1000);
-char tmp[8];
+char msg[500];
   if (!client.connected()) {
     reconnect();
   }
-  char hmd[8];
-  if (!client.connected()) {
-    reconnect();
-  }  
+//  char hmd[8];
+//  if (!client.connected()) {
+//    reconnect();
+//  }  
+  
 float humidityDHT22 = dht.readHumidity(); 
-float temperatureDHT22 = dht.readTemperature();   
+float temperatureDHT22 = dht.readTemperature();  
+ 
+String message = "{\n";
+  message += "  \"temperatureDHT22\": "; message += temperatureDHT22; message += ",\n";
+  message += "  \"humidityDHT22\": "; message += humidityDHT22; message += ",\n";
+  message += "  \"humidity\": "; message += analogRead(pinSensor); message += ",\n";
+  message += "}";
+
+ sprintf(msg,"%s", message);
+  client.publish("esp",msg);
+//  sprintf(hmd,"%f",hmdtvar);
+//  client.publish("esp",hmd);
+  Serial.print("Print MQTT done");
+  
+
  
   if (isnan(humidityDHT22) || isnan(temperatureDHT22)) {  
     Serial.println("Error read");
@@ -84,13 +99,13 @@ digitalWrite(PIN_RELAY2, LOW);
   else if (humidityDHT22 < 70.00 || humidityDHT22 > 75.00 ){
 digitalWrite(PIN_RELAY2, HIGH);    
 }
-Serial.print("Humiditty: ");
+Serial.print("Humidity: ");
 Serial.print(humidityDHT22);
 Serial.print(" %\t");
 Serial.print("Temperature: ");
 Serial.print(temperatureDHT22);
-Serial.println(" *C "); 
-Serial.println(analogRead(pinSensor));
-
+Serial.print("*C "); 
+Serial.println("Humidity soil: "); 
+Serial.print(analogRead(pinSensor));
 
 }
