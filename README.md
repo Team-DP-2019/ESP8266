@@ -1,7 +1,7 @@
 # ESP8266
 WeMos D1/R1 ESP8266 Arduino format code for Blynk framework and MQTT publisher
 
-=================How to install Blynk local server on ESP8266=================
+                         How to install Blynk local server on ESP8266
 
 You need to have a JAR, OpenSSL
 
