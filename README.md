@@ -8,9 +8,8 @@ You need to have a JAR, OpenSSL
 sudo git clone https://github.com/blynkkk/blynk-server/v0.41.13/
 
 copy the following files
-https://github.com/blynkkk/blynk-server/master/server/core/src/main/resources/server.properties
-https://raw.githubusercontent.com/blynkkk/blynk-server/master/server/notifications/email/src/main/resources/mail.properties
-
+https://github.com/Team-DP-2019/ESP8266/blob/master/mail.properties
+https://github.com/Team-DP-2019/ESP8266/blob/master/server.properties
 Сonfigure your network settings
 
 java -jar serverfile.jar -dataFolder /Path
